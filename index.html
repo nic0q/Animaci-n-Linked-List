@@ -11,9 +11,10 @@
 </head>
 <body>
   <section>
-
+    <div><h1>Linked List Animation</h1></div>
+    
   <div id = "container">
-    <div class = "crcl"><span class = "textInside">3</span></div>
+    <div class = "crcl"><span id = "value" class = "textInside">H</span></div>
     <img class = "arrow" src="https://www.pngall.com/wp-content/uploads/2016/07/Arrow-Free-Download-PNG.png" alt="">
   </div>
   <br>
@@ -26,16 +27,18 @@
         </div>
       </div>
 
-      <input type="text" name="" id="inputNumber" placeholder="Número [0-9]" class="form-control" aria-label="Text input with radio button">
+      <input type="text" name="" id="inputNumber" placeholder="Character (1 digit)" class="form-control" aria-label="Text input with radio button">
+    </div>
+
+    <br>
+    <div>
+      <button id = "add" type="button" class="btn btn-success">Nuevo nodo Valor</button>
+      <button id = "delete" type="button" class="btn btn-warning">Eliminar nodo N°</button>
+      <button id = "deleteAll" type="button" class="btn btn-danger">Eliminar Todo</button>
     </div>
     <div id = "error" class = "d-none">
       Ingrese solo numeros permitidos
     </div>
-    <br>
-    <div>
-      <button id = "button" type="button" class="btn btn-info">Nuevo nodo Valor</button>
-    </div>
-    
   </div>
   
 </section>
