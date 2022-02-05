@@ -6,17 +6,28 @@ const $add = document.querySelector("#add")
 const $delete = document.querySelector("#delete")
 const $deleteAll = document.querySelector("#deleteAll")
 const $deleteC = document.querySelector("#deleteC")
+const $speed = document.querySelector("#speed")
+// Animations
+const $drop = document.querySelector("#dr")
+const $gear = document.querySelector("#gear")
+
 // Inputs, Containers
 const $container = document.querySelector("#container")
 const $inputNumber = document.querySelector("#inputNumber")
 const $error = document.querySelector("#error")
+const $wait = document.querySelector("#wait")
+const $speedInput = document.querySelector("#speedInput")
+// Deslizados
+const $slide = document.getElementById("myRange")
+// Speed
+let speed = 200
 
 const freezeButtons = () =>{
   $add.classList.add("disable")
   $delete.classList.add("disable")  
   $deleteAll.classList.add("disable")
   $deleteC.classList.add("disable")
-
+  $wait.classList.remove("d-none")
 }
 
 const unfreezeButtons = () =>{
@@ -24,6 +35,7 @@ const unfreezeButtons = () =>{
   $delete.classList.remove("disable") 
   $deleteAll.classList.remove("disable")
   $deleteC.classList.remove("disable")
+  $wait.classList.add("d-none")
 }
 
 const time = async (time = 500) =>{
@@ -83,38 +95,42 @@ const getLastArrow = () =>{
   return $arr[$arr.length-1]
 }
 // Animacion de añadir
-const animate = async (circle,arrow) =>{
-  animateCircle(circle,200,150)
-  await time()
-  rotateArrow(arrow,200,20)
-  await time(300)
+const animate = async (circle,arrow,delay) =>{
+  animateCircle(circle,delay,150)
+  await time(delay)
+  rotateArrow(arrow,delay,20)
+  await time(delay)
 }
 // Animacion de eliminacion
-const animateReverse = async (circle,arrow) =>{
-  rotateArrow(arrow,200,20)
-  await time()
-  animateCircle(circle,200,150)
-  await time(300)
+const animateReverse = async (circle,arrow,delay) =>{
+  rotateArrow(arrow,delay,20)
+  await time(150)
+  animateCircle(circle,delay,150)
+  await time(150)
 }
 // Animacion de crear un nuevo nodo
 const crearNuevo = async (input) =>{
-  await time()
+  await time(100)
   await createCircle(input)
-  await time()
+  await time(100)
   await createArrow()
+}
+// Guarda el dato del tiempo
+const setSpeed = () =>{
+  speed = parseInt($speedInput.value)
 }
 // Funcion que anima hasta el final
 const animatAll = async () =>{
   let i = 0
   for(e of document.querySelectorAll(".crcl")){
-    await animate(e,document.querySelectorAll(".arrow")[i])
+    await animate(e,document.querySelectorAll(".arrow")[i],speed)
     i+=1
   }
 }
 // Crear nuevo nodo
 const nuevoNodo = async () =>{
   let input = readInputs()
-  if(input !== 0 ){
+  if(input !== -1 ){
     freezeButtons()
     await animatAll()
     await crearNuevo(input)
@@ -124,7 +140,6 @@ const nuevoNodo = async () =>{
     return console.error("ERROR DE INPUT")
   }
 }
-
 // Elimina el numero de nodo (OneBase)
 const deleteIndex = async() =>{
   if(readInputs() !== -1){
@@ -132,7 +147,7 @@ const deleteIndex = async() =>{
   let i = 0
   for(e of document.querySelectorAll(".crcl")){
     let arrow = document.querySelectorAll(".arrow")[i]
-    await animate(e,arrow)
+    await animate(e,arrow,speed)
     if(i === readInputs()-1){
       e.remove()
       arrow.remove()
@@ -147,29 +162,30 @@ else{
   return console.error("ERROR DE INPUT")
 }
 }
-
+// ELimina todos los nodos
 const deleteAll = async() =>{
   freezeButtons()
+  await animatAll()
   for(let i = document.querySelectorAll(".crcl").length; i > 0;i--){
     let circle= document.querySelectorAll(".crcl")[i-1]
     let arrow = document.querySelectorAll(".arrow")[i-1]
-    await animateReverse(circle,arrow)
+    await animateReverse(circle,arrow,speed)
     arrow.remove()
     circle.remove()
     await time(200)
   }
   unfreezeButtons()
 }
+// Elimina todas las coincidencias
 const deleteCo = async() =>{
-  if($inputNumber !== -1){
+  if(readInputs() !== -1){
   freezeButtons()
   let input = readInputs()
   const cr = document.querySelectorAll(".crcl")
   const arr = document.querySelectorAll(".arrow")
   for(let i = 0; i < cr.length;i++){
-    await animate(cr[i],arr[i])
+    await animate(cr[i],arr[i],speed)
     if(cr[i].children.value.innerHTML === input){
-      
       cr[i].remove()
       arr[i].remove()
     }
@@ -180,8 +196,18 @@ else{
   return console.error("ERROR DE INPUT")
 }
 }
+// Anima el engranaje
+const animateGear = () =>{
+  $gear.animate([
+    {transform: 'rotate(360deg)'},
+  ], {
+    duration: 500,
+  })
+}
 
 $add.addEventListener('click',nuevoNodo)
 $delete.addEventListener('click',deleteIndex)
 $deleteAll.addEventListener('click',deleteAll)
 $deleteC.addEventListener('click',deleteCo)
+$drop.addEventListener('click',animateGear)
+$speed.addEventListener('click',setSpeed)

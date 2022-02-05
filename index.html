@@ -16,26 +16,48 @@
     <div class = "crcl"><span id = "value" class = "textInside">H</span></div>
     <img class = "arrow" src="https://www.pngall.com/wp-content/uploads/2016/07/Arrow-Free-Download-PNG.png" alt="">
   </div>
-  <br>
-  <br>
-  <div>
+  <br><br><br><br><br>
+  
+  <div id = "controles">
+    <br>
     <div class="input-group">
       <div class="input-group-prepend">
         <div class="input-group-text">
         <input type="radio" aria-label="Radio button for following text input">
         </div>
       </div>
-      <input type="text" name="" id="inputNumber" placeholder="Character (1 digit)" class="form-control" aria-label="Text input with radio button">
+      <input type="text" name="" id="inputNumber" placeholder="Caracter (1 digito)" class="form-control" aria-label="Text input with radio button">
     </div>
     <br>
-    <div>
-      <button id = "add" type="button" class="btn btn-success">Nuevo nodo Valor</button>
-      <button id = "delete" type="button" class="btn btn-warning">Eliminar nodo N°</button>
-      <button id = "deleteAll" type="button" class="btn btn-danger">Eliminar Todo</button>
-      <button id = "deleteC" type="button" class="btn btn-danger">Eliminar Ocurrencia</button>
+    <div id = "buttons">
+      <div>
+        <button id = "add" type="button" class="btn btn-success"> Nuevo Nodo</button>
+        <button id = "deleteAll" type="button" class="btn btn-danger">Eliminar Todo</button>
+        <details  id ="dropDown">
+          <summary id = "dr">
+            <div id = "gear">⚙️</div> Cambiar Velocidad
+            <!-- CAMBIAR ID GEAR -->
+          </summary>
+          <input id = "speedInput" type="text">
+          <button id = "speed" type="button" class="btn btn-danger">Apply</button>
+        </details>
+      </div>
+      <details  id ="dropDown">
+        <summary id = "dr">
+          <div id = "gear">⚙️</div> Eliminar
+        </summary>
+        <button id = "delete" type="button" class="btn btn-warning">Eliminar nodo N°</button>
+        <button id = "deleteC" type="button" class="btn btn-danger">Eliminar Ocurrencia</button>
+      </details>
+      
     </div>
+    <br>
     <div id = "error" class = "d-none">
-      Ingrese solo Caracteres
+      Ingrese Caracteres (1 dígito)
+    </div>
+
+    <div id = "wait" class = "d-none">
+      espere... ⏰
     </div>
   </div>
 </section>
