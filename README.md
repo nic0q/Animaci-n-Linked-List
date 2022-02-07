@@ -1,4 +1,6 @@
 # Linked List Animation
+## Vista General
+![image](https://user-images.githubusercontent.com/91075814/152724344-93264980-18f9-494d-82fc-879371202639.png)
 ## Visualization
 ![ss](https://user-images.githubusercontent.com/91075814/152722784-4cc6ee54-3483-4191-9362-e77c39b0523a.gif)
 ## Features
