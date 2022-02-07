@@ -17,8 +17,7 @@ const $inputNumber = document.querySelector("#inputNumber")
 const $error = document.querySelector("#error")
 const $wait = document.querySelector("#wait")
 const $speedInput = document.querySelector("#speedInput")
-// Deslizados
-const $slide = document.getElementById("myRange")
+
 // Speed
 let speed = 200
 
@@ -110,14 +109,14 @@ const animateReverse = async (circle,arrow,delay) =>{
 }
 // Animacion de crear un nuevo nodo
 const crearNuevo = async (input) =>{
-  await time(100)
+  await time(150)
   await createCircle(input)
-  await time(100)
+  await time(150)
   await createArrow()
 }
 // Guarda el dato del tiempo
 const setSpeed = () =>{
-  speed = parseInt($speedInput.value)
+  speed = parseInt($speedInput.value) * 100
 }
 // Funcion que anima hasta el final
 const animatAll = async () =>{
@@ -172,7 +171,7 @@ const deleteAll = async() =>{
     await animateReverse(circle,arrow,speed)
     arrow.remove()
     circle.remove()
-    await time(200)
+    await time(300)
   }
   unfreezeButtons()
 }

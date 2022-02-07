@@ -33,23 +33,22 @@
       <div>
         <button id = "add" type="button" class="btn btn-success"> Nuevo Nodo</button>
         <button id = "deleteAll" type="button" class="btn btn-danger">Eliminar Todo</button>
-        <details  id ="dropDown">
+        <details class   ="dropDown">
           <summary id = "dr">
-            <div id = "gear">⚙️</div> Cambiar Velocidad
-            <!-- CAMBIAR ID GEAR -->
+            <div id = "gear">⚙️</div> Eliminar
           </summary>
-          <input id = "speedInput" type="text">
-          <button id = "speed" type="button" class="btn btn-danger">Apply</button>
+          <button id = "delete" type="button" class="btn btn-warning">Eliminar nodo N°</button>
+          <button id = "deleteC" type="button" class="btn btn-danger">Eliminar Ocurrencia</button>
         </details>
       </div>
-      <details  id ="dropDown">
+      <details class ="blue dropDown">
         <summary id = "dr">
-          <div id = "gear">⚙️</div> Eliminar
+          <div id = "gear">⚙️</div> Cambiar Velocidad
+          <!-- CAMBIAR ID GEAR -->
         </summary>
-        <button id = "delete" type="button" class="btn btn-warning">Eliminar nodo N°</button>
-        <button id = "deleteC" type="button" class="btn btn-danger">Eliminar Ocurrencia</button>
+        <input id = "speedInput" type="text" placeholder="0-10">
+        <button id = "speed" type="button" class="btn btn-success">Apply</button>
       </details>
-      
     </div>
     <br>
     <div id = "error" class = "d-none">
@@ -59,8 +58,12 @@
     <div id = "wait" class = "d-none">
       espere... ⏰
     </div>
+    <div id = "footer">Made with ❤️ by <a href="https://github.com/nic0q" target="_blank">Nícolas</a></div>
   </div>
+
 </section>
+
 </body>
+
 <script src = "script.js"></script>
 </html>
